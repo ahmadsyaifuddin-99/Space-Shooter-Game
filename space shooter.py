@@ -50,7 +50,7 @@ class Laser:
 
 # Ship Parent class to inherit player and enemy ship class
 class Ship:
-    COOLDOWN = 30
+    COOLDOWN = 10
     def __init__(self, x, y, health= 100):
         self.x = x
         self.y = y
@@ -181,7 +181,7 @@ def main():
     # ORI PLAYER_VEL = 5
     PLAYER_VEL = 7
     # ORI ENEMY_VEL = 1
-    ENEMY_VEL = 1
+    ENEMY_VEL = 3
     # ORI LASER_VELO = 5
     LASER_VELO = 5
     enemies = []
