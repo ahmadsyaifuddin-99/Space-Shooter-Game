@@ -5,7 +5,7 @@ import random
 
 pygame.mixer.pre_init(44100, 16, 4, 4096) #frequency, size, channels, buffersize
 pygame.init()
-WIDTH, HEIGHT = 750, 750
+WIDTH, HEIGHT = 750, 650
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("SPACE SHOOTER")
 
@@ -82,7 +82,7 @@ class Ship:
             self.cool_down_counter = 0
         elif self.cool_down_counter > 0:
             # ORI self.cool_down_counter += 1
-            self.cool_down_counter += 10
+            self.cool_down_counter += 1
 
     def shoot(self):
         if self.cool_down_counter == 0:
@@ -91,7 +91,7 @@ class Ship:
                 pygame.mixer.Channel(0).play(laser_sound)
             self.lasers.append(laser)
             #ORI self.cool_down_counter = 1
-            self.cool_down_counter = 10
+            self.cool_down_counter = 1
 
     def get_width(self):
         return self.ship_img.get_width()
@@ -175,20 +175,20 @@ def main():
     lost = False
     lost_count = 0
     FPS = 60
-    level = 0
+    level = 3
     # ORI lives = 5
     lives = 10
     # ORI PLAYER_VEL = 5
-    PLAYER_VEL = 7
+    PLAYER_VEL = 6
     # ORI ENEMY_VEL = 1
-    ENEMY_VEL = 3
-    # ORI LASER_VELO = 5
-    LASER_VELO = 5
+    ENEMY_VEL = 2
+    # ORI LASER_VELO = 6
+    LASER_VELO = 6
     enemies = []
     #ORI wave_length = 0
     wave_length = 3
     main_font = pygame.font.SysFont("comicsans", size= 50)
-    player = Player(300, 630)
+    player = Player(300, 540)
     
     clock = pygame.time.Clock()
 
@@ -233,9 +233,9 @@ def main():
         # ADDING ENEMIES IN THE LIST AND SPAWNING THEM
         if len(enemies) == 0:
             level += 1
-            wave_length += 5
+            wave_length += 10
             for _ in range(wave_length):
-                enemy = Enemy(random.randrange(50, WIDTH-100), random.randrange(-1500 *(1+level//4), -100), random.choice(["red", "green", "blue"]))
+                enemy = Enemy(random.randrange(150, WIDTH-100), random.randrange(-1500 *(1+level//4), -100), random.choice(["red", "green", "blue"]))
                 enemies.append(enemy)
 
         for event in pygame.event.get():
